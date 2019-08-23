@@ -1,4 +1,5 @@
 import {
+    FETCH_TODOS_PENDING,
     FETCH_TODOS_FULFILLED,
     FETCH_TODOS_REJECTED,
     DELETE_TODO_FULFILLED,
@@ -10,27 +11,32 @@ import {
 } from '../actions/todos'
 
 const initialState = {
-    fetching: false,
+    fetching: '',
     todos: [],
     error: {}
 };
 
 export default (state = initialState, action) => {
-  
-    switch (action.type) {
 
+    switch (action.type) {
         //FETCH
+        case FETCH_TODOS_PENDING:
+            return {
+                ...state,
+                fetching: true,
+            };
         case FETCH_TODOS_FULFILLED:
             return {
                 ...state,
+                fetching: false,
                 todos: action.payload
             };
         case FETCH_TODOS_REJECTED:
             return {
                 ...state,
+                fetching: false,
                 error: action.payload
             };
-
         //ADD
         case NEW_TODOS_FULFILLED:
             return {

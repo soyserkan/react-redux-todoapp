@@ -1,9 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import TodosCells from './TodosCells'
+import { HashLoader } from 'react-spinners'
 
+const TodosList = ({ todos, deleteTodo, editTodo }) => {
 
-const TodosList = ({ todos,deleteTodo,editTodo }) => {
     const emptyMessage = (
         <p>There are no todo list yet.</p>
     )
@@ -19,6 +20,10 @@ const TodosList = ({ todos,deleteTodo,editTodo }) => {
 
     return (
         <div>
+            <HashLoader
+                color={'#123abc'}
+                loading={todos.fetching}
+            />
             {todos.length === 0 ? emptyMessage : todosList}
         </div>
     );
